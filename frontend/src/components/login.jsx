@@ -1,5 +1,4 @@
 import React, { use } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -16,17 +15,6 @@ const Login = () => {
   const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
-  
-
-  // const [lastRoute, setLastRoute] = useState("");
-  // useEffect(() => {
-  //   const storedRoute = localStorage.getItem("lastRoute");
-  //   if (storedRoute) {
-  //     setLastRoute(storedRoute);
-  //     console.log(storedRoute);
-      
-  //   }
-  // }, []);
 
   const submitFunc = async (e) => {
     e.preventDefault();
@@ -41,12 +29,9 @@ const Login = () => {
       );
 
       if (res.data.success) {
-        //  if (res.data.success == true &&  location.pathname != '/home'){
-
-        //  }
+    
         toast.success(`${res.data.message}🎉`);
-        console.log(res.data.message);
-        console.log(res.data.success);
+       
 
         setAuth({
           ...auth,
@@ -55,21 +40,16 @@ const Login = () => {
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate('/home')
-        // navigate(lastRoute || "/home");
-        // localStorage.removeItem('lastRoute')
       } else {
-        console.log(res.data.message);
+      
         toast.error(`Registration failed❌ ${res.data.message}`);
       }
     } catch (error) {
-      console.log(error.response);
-
       console.log("error in catch statement", error);
     }
 
-    console.log(emailValue, passwordValue);
   };
-  // console.log("jj",import.meta.env.VITE_API);
+
 
   return (
     <>

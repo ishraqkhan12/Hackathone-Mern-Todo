@@ -4,16 +4,10 @@ import Signup from "./components/signup";
 import { Toaster } from "react-hot-toast";
 import Login from "./components/login";
 import Home from "./Pages/Home";
-import Dashboard from "./Pages/Admin/Dashboard";
-import PrivateRoute from "./Routes/private";
 import PageNotFound from "./components/PageNotFound";
-import CreateCategory from "./Pages/Admin/CreateCategory";
 import CreateTask from "./Pages/Admin/CreateTask"
-import ProductList from "./Pages/Admin/Products"
-import UpdateProducts from "./Pages/Admin/updateProducts";
 import GetTast from "./Pages/Admin/GetTask";
 import Update from "./Pages/Admin/Update"
-import Users from "./Pages/Admin/Users";
 import PrivateHome from './Routes/PrivateHome'
 
 function App() {
@@ -26,7 +20,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/home" element={<Home />} /> */}
           <Route path="*" element={<PageNotFound />} />
 
 

@@ -1,5 +1,5 @@
 import express, { Router } from 'express'
-import { checkAdminRole, verifyToken } from '../middlewares/authMiddleware.js'
+import {  verifyToken } from '../middlewares/authMiddleware.js'
 import { createTaskController, getTasksController, SingleTaskController, updateTaskController } from '../controllers/TastController.js'
 
 const router = express.Router()

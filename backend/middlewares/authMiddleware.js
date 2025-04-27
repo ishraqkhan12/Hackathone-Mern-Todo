@@ -36,24 +36,4 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 
-export const checkAdminRole = (req, res, next) => {
-  try {
-    if (req.user.role !== 1) {
-      return res.status(403).send({
-        success: false,
-        message: "Access denied: Admins only",
-      });
-    }
-
-    next();
-
-  } catch (error) {
-    console.log("checkAdminRole error:", error.message);
-    res.status(500).send({
-      success: false,
-      message: "Role check failed",
-      error: error.message,
-    });
-  }
-};
 

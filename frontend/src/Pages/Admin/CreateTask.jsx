@@ -27,7 +27,7 @@ const AddTaskForm = () => {
         assignedTo: auth.user.name, // Automatically assign the logged-in user's name
       };
 
-      console.log(taskData);
+      
       
       const { data } = await axios.post(
         `${import.meta.env.VITE_API}/api/v1/task/create-task`,
@@ -46,7 +46,7 @@ const AddTaskForm = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      console.error(error);
+    
       toast.error(error?.response?.data?.message || "Task creation failed");
     }
   };

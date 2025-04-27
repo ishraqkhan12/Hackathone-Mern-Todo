@@ -1,6 +1,6 @@
 import express from "express"
 import {registerController, loginController, adminController} from "../controllers/authControllers.js"
-import { verifyToken, checkAdminRole } from "../middlewares/authMiddleware.js"
+import { verifyToken } from "../middlewares/authMiddleware.js"
 
 //router object
 const router = express.Router()
@@ -13,10 +13,10 @@ router.post('/register', registerController)
 router.post('/login', loginController) 
 
 //admin || get 
-router.get('/admin', verifyToken, checkAdminRole , adminController )
+router.get('/admin', verifyToken,  adminController )
 
 // protected route
-router.get('/user-auth', verifyToken, checkAdminRole, (req, res)=>{
+router.get('/user-auth', verifyToken,  (req, res)=>{
     res.status(200).send({ ok:true})
 })
 

@@ -10,8 +10,8 @@ const UpdateTaskForm = () => {
     description: "",
     status: "To Do",
   });
-  const { taskId } = useParams(); // Use useParams to get the taskId from the URL
-  const [auth] = useAuth(); // Get user data from context
+  const { taskId } = useParams(); 
+  const [auth] = useAuth(); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,9 @@ const UpdateTaskForm = () => {
           });
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
+        
+  
         toast.error("Error fetching task details");
       }
     };
@@ -60,7 +62,7 @@ const UpdateTaskForm = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      console.error(error);
+      
       toast.error(error?.response?.data?.message || "Task update failed");
     }
   };
@@ -76,7 +78,7 @@ const UpdateTaskForm = () => {
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-conso-500"
           />
           <textarea
             placeholder="Task Description"
