@@ -28,8 +28,8 @@ const Login = () => {
         }
       );
 
-      if (res.data.success == false) {
-        toast.error(`Registration failed❌ ${res.data.message}`);
+      if (res.data.success == true) {
+    
         toast.success(`${res.data.message}🎉`);
 
         setAuth({
