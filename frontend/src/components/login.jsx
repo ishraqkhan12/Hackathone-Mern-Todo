@@ -28,10 +28,9 @@ const Login = () => {
         }
       );
 
-      if (res.data.success) {
-    
+      if (res.data.success == false) {
+        toast.error(`Registration failed❌ ${res.data.message}`);
         toast.success(`${res.data.message}🎉`);
-       
 
         setAuth({
           ...auth,
@@ -39,17 +38,20 @@ const Login = () => {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate('/home')
+        navigate("/home");
       } else {
-      
         toast.error(`Registration failed❌ ${res.data.message}`);
       }
     } catch (error) {
-      console.log("error in catch statement", error);
+      if (error.response) {
+        toast.error(
+          `Error: ${error.response.data.message || "An error occurred"}`
+        );
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
-
   };
-
 
   return (
     <>
