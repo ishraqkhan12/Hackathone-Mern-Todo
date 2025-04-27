@@ -1,8 +1,10 @@
 import { useAuth } from "../context/auth";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ProfileHover = () => {
   const [auth, setAuth] = useAuth();
+  const navigate = useNavigate()
 
   if (!auth.user) return null;
 

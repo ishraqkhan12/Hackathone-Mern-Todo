@@ -13,8 +13,7 @@ const taskSchema = new mongoose.Schema(
       trim: true,
     },
     assignedTo: {
-      type: String  // 👈 Ye change
-        // 👈 Yeh bata rahe hain ke kis collection se link hai
+      type: String 
 
     },
     status: {
