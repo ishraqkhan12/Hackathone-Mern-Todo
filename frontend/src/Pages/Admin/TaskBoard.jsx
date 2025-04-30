@@ -26,6 +26,18 @@ const TaskBoard = () => {
   const inProgressTasks = tasks.filter((task) => task.status === "In Progress");
   const doneTasks = tasks.filter((task) => task.status === "Done");
 
+  const handleDelete = async (id)=>{
+    try {
+      const { data } = await axios.delete(`${import.meta.env.VITE_API}/api/v1/task/delete-task/${id}`);
+      if (data){
+        toast.success('Task deleted successfully')
+        setTasks((prev) => prev.filter((task) => task._id !== id));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="w-full flex justify-between gap-4 px-4">
     {/* To Do Column */}
@@ -45,10 +57,16 @@ const TaskBoard = () => {
               >
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold text-gray-800">{task.title}</h3>
+                  <div className="space-x-1">
                   <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">
                   <Link to={`/home/update/${task._id}`}>
                   Edit </Link> 
                   </button>
+                  <button onClick={()=> handleDelete(task._id)} className="bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700 transition-colors">
+                  
+                  Delete 
+                  </button>
+                  </div>
                 </div>
                 <p className="text-gray-700 mb-2">{task.description}</p>
                 <div className="text-sm text-gray-500">
@@ -79,10 +97,18 @@ const TaskBoard = () => {
               >
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold text-gray-800">{task.title}</h3>
+
+                  <div className="space-x-1">
                   <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">
                   <Link to={`/home/update/${task._id}`}>
                   Edit </Link> 
                   </button>
+
+                  <button onClick={()=> handleDelete(task._id)} className="bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700 transition-colors">
+                  
+                  Delete 
+                  </button>
+                  </div>
                 </div>
                 <p className="text-gray-700 mb-2">{task.description}</p>
                 <div className="text-sm text-gray-500">
@@ -113,10 +139,16 @@ const TaskBoard = () => {
               >
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold text-gray-800">{task.title}</h3>
+                  <div className="space-x-1">
                   <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">
                   <Link to={`/home/update/${task._id}`}>
                   Edit </Link> 
                   </button>
+                  <button onClick={()=> handleDelete(task._id)} className="bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700 transition-colors">
+                  
+                  Delete 
+                  </button>
+                  </div>
                 </div>
                 <p className="text-gray-700 mb-2">{task.description}</p>
                 <div className="text-sm text-gray-500">

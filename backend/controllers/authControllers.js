@@ -1,60 +1,3 @@
-// import { hashPassword } from "../helpers/authHelper.js";
-// import usermodal from "../models/usermodal.js";
-
-// export const registerController = async (req, res) => {
-//   try {
-//     const { name, email, password, phone } = req.body;
-
-//     //validation
-//     if (!name) {
-//       res.send({ error: "Name is required" });
-//     }
-//     if (!email) {
-//       res.send({ error: "Email is required" });
-//     }
-//     if (!password) {
-//       res.send({ error: "Password is required" });
-//     }
-//     if (!phone) {
-//       res.send({ error: "Phone is required" });
-//     }
-
-//     const existingUser = await usermodal.findOne({ email });
-
-//     // existing user
-//     if (existingUser) {
-//       return res.status(200).send({
-//         success: true,
-//         message: "Already Register please login",
-//       });
-//     }
-
-//     //hashpassword
-//     const hashedPassword = await hashPassword(password);
-
-//     //save
-//     const user = await new usermodal({
-//       name,
-//       email,
-//       password: hashedPassword,
-//       phone,
-//     }).save();
-//     res.status(201).send({
-//       success: true,
-//       message: "User Registered Successfully",
-//       user,
-//     });
-//   } catch (error) {
-//     console.log(`registerController error ${error}`);
-//     res.status(500).send({
-//       success: false,
-//       message: "error in registeration",
-//       error,
-//     });
-//   }
-// };
-
-
 import { comparePassword, hashPassword } from "../helpers/authHelper.js";
 import usermodal from "../models/usermodal.js";
 import JWT from "jsonwebtoken";
@@ -71,7 +14,7 @@ export const registerController = async (req, res) => {
       });
     }
 
-    // Check if user already exists
+    //----- Check if user already exists
     const existingUser = await usermodal.findOne({ email }); 
 
     if (existingUser) {
@@ -81,10 +24,10 @@ export const registerController = async (req, res) => {
       });
     }
 
-    // Hash password
+    //------ Hash password
     const hashedPassword = await hashPassword(password);
 
-    // Save new user
+    //-- Save new user
     const user = await new usermodal({
       name,
       email,
@@ -93,7 +36,7 @@ export const registerController = async (req, res) => {
       role,
     }).save();
 
-    // JWT token generate
+    // ---JWT token generate
 
     const token = await JWT.sign({_id: user._id}, process.env.JWT_SECRET,{expiresIn:'7d' },)
 
@@ -104,11 +47,11 @@ export const registerController = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(`registerController error:`, error); // ✅ Fixed error variable
+    console.log(`registerController error:`, error); 
     res.status(500).send({
       success: false,
       message: "Error in registration",
-      error: error.message, // 👀 Send only the message, not the whole error object
+      error: error.message, 
     });
   }
 };
@@ -135,7 +78,7 @@ export const loginController = async (req, res) => {
     }
   
 
-    // compare password
+    //---- compare password
     const match = await comparePassword(password, user.password)
     if (!match) {
       res.status(200).send({
@@ -145,7 +88,7 @@ export const loginController = async (req, res) => {
       
     }
     
-    // token
+    //------ token
 
     const token = await JWT.sign({_id: user._id }, process.env.JWT_SECRET, {
       expiresIn :'7d',
@@ -186,7 +129,7 @@ export const adminController = async (req, res) =>{
   } catch (error) {
     res.status(400).send({
       success: false,
-      message: 'Failed to get users.....error in admin controller'
+      message: 'Failed to get users'
     })
   }
 }
