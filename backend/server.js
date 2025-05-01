@@ -17,7 +17,10 @@ dotenv.config()
 connectDb()
 
 //middleware
-app.use(cors())
+app.use(cors({
+    origin: ['https://hackathone-mern-todo-frontend.vercel.app'],
+    credentials: true,
+  }));
 app.use(express.json())
 app.use(morgan('dev'))
 
