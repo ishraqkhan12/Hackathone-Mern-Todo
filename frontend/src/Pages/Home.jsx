@@ -10,7 +10,7 @@ const Products = () => {
  
   return (
     <Layout>
-      <div className="flex flex-col md:flex-row min-h-screen pt-16 md:pt-0">
+      <div className="flex flex-col md:flex-row min-h-screen  md:pt-0">
       <TaskBoard/>
 
 
