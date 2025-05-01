@@ -56,12 +56,10 @@ const Signup = () => {
 
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
       
-      console.log("error in catch statement",error);
+     
     }
-
-    console.log("hh",nameValue, emailValue, passwordValue, contactValue, roleValue);
   };
 // console.log("jj",import.meta.env.VITE_API);
 
